@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="theme-color" content="#0a0a0a" />
+  <title>Barrowdelve — The First Dungeon</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230a0a0b'/%3E%3Cpath d='M16 3l2 9 8-3-6 7 6 7-8-3-2 9-2-9-8 3 6-7-6-7 8 3z' fill='%23c8a24a'/%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="css/style.css" />
+  <!-- Three.js r160, vendored locally so the game is fully self-contained
+       (works offline / on GitHub Pages with no external CDN dependency). -->
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "./vendor/three.module.js",
+      "three/addons/": "./vendor/addons/"
+    }
+  }
+  </script>
+</head>
+<body>
+  <!-- Loading / Title screen -->
+  <div id="title-screen" class="overlay">
+    <div class="title-inner">
+      <h1 class="game-title">BARROWDELVE</h1>
+      <p class="subtitle">The First Dungeon</p>
+      <div id="loading-status" class="loading">Loading the barrow…</div>
+      <button id="start-btn" class="menu-btn" disabled>Enter the Barrow</button>
+      <p class="hint">Best played in landscape. Headphones recommended.</p>
+    </div>
+  </div>
+
+  <!-- Win / Death screens -->
+  <div id="end-screen" class="overlay hidden">
+    <div class="title-inner">
+      <h1 id="end-title" class="game-title">VICTORY</h1>
+      <p id="end-text" class="subtitle"></p>
+      <button id="restart-btn" class="menu-btn">Delve Again</button>
+    </div>
+  </div>
+
+  <!-- In-game HUD -->
+  <div id="hud" class="hidden">
+    <div class="top-bar">
+      <div class="bars">
+        <div class="bar-wrap"><div class="bar-label">Health</div><div class="bar-track"><div id="health-fill" class="bar-fill health"></div></div></div>
+        <div class="bar-wrap"><div class="bar-label">Stamina</div><div class="bar-track"><div id="stamina-fill" class="bar-fill stamina"></div></div></div>
+      </div>
+      <div id="objective" class="objective">Descend into the barrow.</div>
+    </div>
+
+    <div id="compass" class="compass"><span id="compass-marker">›</span></div>
+
+    <!-- Movement joystick -->
+    <div id="joystick" class="joystick">
+      <div id="joystick-knob" class="joystick-knob"></div>
+    </div>
+
+    <!-- Action buttons -->
+    <div class="action-buttons">
+      <button id="btn-interact" class="act-btn interact hidden">Loot</button>
+      <button id="btn-sprint" class="act-btn sprint">Run</button>
+      <button id="btn-attack" class="act-btn attack">⚔</button>
+    </div>
+
+    <div id="toast" class="toast hidden"></div>
+  </div>
+
+  <canvas id="game-canvas"></canvas>
+
+  <script type="module" src="src/game.js"></script>
+</body>
+</html>
